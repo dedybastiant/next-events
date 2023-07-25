@@ -8,7 +8,15 @@ import { getEventById, getFeaturedEvents } from "../../helpers/api-util";
 function EventDetailPage(props) {
   const event = props.selectedEvent;
 
-  if (!event) {
+  if (event === undefined) {
+    return (
+      <div className="center">
+        <p>Loading...</p>
+      </div>
+    );
+  }
+
+  if (event === null) {
     return (
       <ErrorAlert>
         <p>No event found!</p>
@@ -38,6 +46,14 @@ export async function getStaticProps(context) {
   const eventId = context.params.eventId;
 
   const event = await getEventById(eventId);
+
+  if (!event) {
+    return {
+      props: {
+        selectedEvent: null,
+      },
+    };
+  }
 
   return {
     props: {
