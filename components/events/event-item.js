@@ -33,7 +33,7 @@ function EventItem(props) {
         </div>
         <div className={classes.actions}>
           <Button link={exploreLink}>
-            <spam>Explore Event</spam>
+            <span>Explore Event</span>
             <span className={classes.icon}>
               <ArrowRightIcon />
             </span>
